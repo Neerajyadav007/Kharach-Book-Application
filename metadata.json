@@ -1,0 +1,8 @@
+{
+  "name": "Kharcha Book",
+  "description": "Minimalist Swiss-inspired financial telemetry, capital management, and transaction ledger engine with seamless dark/light modes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

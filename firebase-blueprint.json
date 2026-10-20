@@ -1,0 +1,74 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile, balance preferences, and settings.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "currencyUnit": { "type": "string" },
+        "themeMode": { "type": "string" },
+        "totalLiquidity": { "type": "number" },
+        "protectedVault": { "type": "number" },
+        "netWorth": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "currencyUnit", "totalLiquidity", "createdAt", "updatedAt"]
+    },
+    "BankAccount": {
+      "title": "BankAccount",
+      "description": "Connected bank account or card with real-time balance.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "mask": { "type": "string" },
+        "subtext": { "type": "string" },
+        "balance": { "type": "number" },
+        "isCredit": { "type": "boolean" },
+        "apy": { "type": "string" },
+        "icon": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "name", "balance", "createdAt", "updatedAt"]
+    },
+    "Transaction": {
+      "title": "Transaction",
+      "description": "Financial execution or ledger entry.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "category": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "dateGroup": { "type": "string" },
+        "accountName": { "type": "string" },
+        "amount": { "type": "number" },
+        "status": { "type": "string" },
+        "type": { "type": "string" },
+        "note": { "type": "string" },
+        "iconName": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "title", "amount", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "User profile and aggregate financial state."
+    },
+    "/users/{userId}/accounts/{accountId}": {
+      "schema": { "$ref": "#/entities/BankAccount" },
+      "description": "User bank accounts and balance store."
+    },
+    "/users/{userId}/transactions/{transactionId}": {
+      "schema": { "$ref": "#/entities/Transaction" },
+      "description": "User income, expense, and transfer records."
+    }
+  }
+}
